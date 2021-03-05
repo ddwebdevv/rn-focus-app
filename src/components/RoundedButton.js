@@ -1,10 +1,7 @@
 import React from 'react';
 import { StyleSheet,
     Text,
-    TouchableOpacity,
-    TouchableNativeFeedback,
-    Platform,
-    Touchable
+    TouchableOpacity
 } from 'react-native';
 
 const RoundedButton = ({
@@ -13,14 +10,14 @@ const RoundedButton = ({
     size = 125,
     ...props
 }) => {
-    let TouchableComponent = TouchableOpacity;
+    // let TouchableComponent = TouchableOpacity;
 
-    if (Platform.OS === 'android' && Platform.Version >= 21) {
-        TouchableComponent = TouchableNativeFeedback;
-    }
+    // // if (Platform.OS === 'android' && Platform.Version >= 21) {
+    // //     TouchableComponent = TouchableNativeFeedback;
+    // // }
 
     return (
-        <TouchableComponent
+        <TouchableOpacity
             style={[
                 styles(size).radius,
                 style
@@ -34,7 +31,7 @@ const RoundedButton = ({
             >
                 {props.title}
             </Text>
-        </TouchableComponent>
+        </TouchableOpacity>
     );
 };
 
