@@ -10,7 +10,7 @@ import Timing from './Timing';
 import { colors } from '../../utils/colors';
 import { spacingSizes } from '../../utils/sizes';
 
-const Timer = ({ focusSubject, onTimerEnd }) => {
+const Timer = ({ focusSubject, onTimerEnd, clearSubject }) => {
     useKeepAwake();
     const [minutes, setMinutes] = useState(0.1);
     const [isStarted, setIsStarted] = useState(false);
@@ -80,6 +80,13 @@ const Timer = ({ focusSubject, onTimerEnd }) => {
                         />
                     )}
             </View>
+            <View style={styles.cancelContainer}>
+                <RoundedButton
+                    title='-'
+                    onPress={() => clearSubject()}
+                    size={50}
+                />
+            </View>
         </View>
     );
 };
@@ -117,6 +124,10 @@ const styles = StyleSheet.create({
     },
     progressContainer: {
         paddingTop: spacingSizes.md
+    },
+    cancelContainer: {
+        paddingBottom: 25,
+        paddingLeft: 25
     }
 });
 

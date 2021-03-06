@@ -22,19 +22,24 @@ const Countdown = ({
 
     const minute = Math.floor(millis / 1000 / 60) % 60;
     const seconds = Math.floor(millis / 1000) % 60;
-    
+
     const countDown = () => {
         setMillis((time) => {
             if (time === 0) {
                 clearInterval(interval.current);
-                onEnd();
                 return time;
             }
             const timeLeft = time - 1000;
-            onProgress(timeLeft / minutesToMillis(minutes));
             return timeLeft;
         })
     };
+    useEffect(() => {
+        onProgress(millis / minutesToMillis(minutes));
+        
+        if (millis === 0) {
+            onEnd();
+        }
+    }, [millis]);
 
     useEffect(() => {
         setMillis(minutesToMillis(minutes));
